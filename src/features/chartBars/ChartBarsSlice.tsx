@@ -33,8 +33,10 @@ export const chartBarsSlice = createSlice({
         productivity: action.payload.productivity,
         weight: action.payload.weight,
       };
-      state.data.push(newBar);
-      console.log(state);
+      if (!state.data.find((el) => el.task.includes(action.payload.task))) {
+        state.data.push(newBar);
+      }
+      console.log(state.data);
     },
     getTotal: (state) => {
       const sumProd = (total: number, el: { volumes: number }) => {
@@ -51,10 +53,10 @@ export const chartBarsSlice = createSlice({
       state.total = ((totalWeight / totalProductivity) * 100).toFixed(2);
       console.log(state.total);
     },
-    clearData:(state) => {
-      state.data = []
-      state.total = ""
-    }
+    clearData: (state) => {
+      state.data = [];
+      state.total = "";
+    },
   },
 });
 
