@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 interface Data {
-  id: number;
   time: string;
   volumes: number;
   task: string;
@@ -26,7 +25,6 @@ export const chartBarsSlice = createSlice({
   reducers: {
     addBar: (state, action) => {
       const newBar = {
-        id: Date.now(),
         task: action.payload.task,
         time: action.payload.time,
         volumes: Number(action.payload.volumes),
