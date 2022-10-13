@@ -1,4 +1,4 @@
-import { IoStatsChart } from "react-icons/io5";
+import { IoStatsChart, IoSettings } from "react-icons/io5";
 
 export const Navbar = () => {
   return (
@@ -17,7 +17,7 @@ export const Navbar = () => {
         <li><IoStatsChart className="icon" />Productivity</li>
         {/* <li><IoPieChart className="icon" />Utilization</li> */}
         {/* <IoCalendarNumber className="icon" /> */}
-        {/* <li><IoSettings className="icon" />Settings</li> */}
+        <li><IoSettings className="icon" />Settings</li>
         </ul>
       </nav>
       </div>
