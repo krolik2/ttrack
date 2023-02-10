@@ -1,63 +1,80 @@
-import React from "react";
+import { useCallback, useState } from "react";
+import { IoCloseOutline } from "react-icons/io5";
 import {
-    IoCloseOutline,
-    IoCreateOutline,
-  } from "react-icons/io5";
+  selectChartBars,
+  removeBar,
+  getTotal,
+} from "../features/chartBars/ChartBarsSlice";
+
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import Modal from "./Modal";
+import { Data } from "../features/chartBars/ChartBarsSlice";
 
 const TaskList = () => {
+  const chartBars = useAppSelector(selectChartBars);
+  const dispatch = useAppDispatch();
+
+  const handleDelete = (task: string) => {
+    dispatch(removeBar(task));
+    dispatch(getTotal());
+  };
+
+  const [showModal, setShowModal] = useState(false);
+  const [state, setState] = useState({
+    time: "",
+    volumes: "",
+    task: "",
+  });
+
+  const toggleModal = useCallback(
+    (): void => setShowModal(!showModal),
+    [showModal]
+  );
+
+  const editData = (el: Data) => {
+    setState({
+      ...state,
+      task: el.task,
+      time: el.time,
+      volumes: el.volumes.toString(),
+    });
+    toggleModal();
+  };
+
   return (
     <>
       <div className="productivity"></div>
       <h2 className="sub_title">Task list:</h2>
       <div className="task_list">
-        <div className="task_item">
-          <div className="task_text">
-            <div className="task_item_title">
-              Attributes Backfill-Description-Bullet Point
+        {chartBars.data.length ? (
+          chartBars.data.map((el) => (
+            <div className="task_item" key={el.task}>
+              <div className="task_text" onClick={() => editData(el)}>
+                <div className="task_item_title">{el.task}</div>
+                <div className="task_item_time">{`Time: ${el.time} h`}</div>
+                <div className="task_item_volumes">{`Volumes: ${el.volumes}`}</div>
+              </div>
+              <div className="btn-container">
+                <button
+                  className="action-btn"
+                  onClick={() => handleDelete(el.task)}
+                >
+                  <IoCloseOutline className="icon" />
+                </button>
+              </div>
             </div>
-            <div className="task_item_time">T: 2 h</div>
-            <div className="task_item_volumes">V: 300</div>
+          ))
+        ) : (
+          <div className="message">
+            <h2 className="sub_title">
+              There are currently no tasks on your list... add something :)
+            </h2>
           </div>
-          <div className="btn-container">
-            <button className="action-btn">
-              <IoCreateOutline className="icon" />
-            </button>
-            <button className="action-btn">
-              <IoCloseOutline className="icon" />
-            </button>
-          </div>
-        </div>
-        <div className="task_item">
-          <div className="task_text">
-            <div className="task_item_title">LeafNodes Backfill-Hardlines</div>
-            <div className="task_item_time">T: 9 h</div>
-            <div className="task_item_volumes">V: 30</div>
-          </div>
-          <div className="btn-container">
-            <button className="action-btn">
-              <IoCreateOutline className="icon" />
-            </button>
-            <button className="action-btn">
-              <IoCloseOutline className="icon" />
-            </button>
-          </div>
-        </div>
-        <div className="task_item">
-          <div className="task_text">
-            <div className="task_item_title">Title Clean Up</div>
-            <div className="task_item_time">T: 10.5 h</div>
-            <div className="task_item_volumes">V: 2300</div>
-          </div>
-          <div className="btn-container">
-            <button className="action-btn">
-              <IoCreateOutline className="icon" />
-            </button>
-            <button className="action-btn">
-              <IoCloseOutline className="icon" />
-            </button>
-          </div>
-        </div>
+        )}
       </div>
+      {showModal && (
+        <Modal toggleModal={toggleModal} state={state} setState={setState} />
+      )}
     </>
   );
 };

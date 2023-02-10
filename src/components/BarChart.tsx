@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -37,18 +38,64 @@ export const options = {
 
 export function BarChart() {
   const chartBars = useSelector(selectChartBars);
-  const labels = chartBars.data.map((el) => el.task);
+  // const labels = chartBars.data.map((el) => el.task);
 
-  const data = {
-    labels,
+  // const [chartsData, setChartsData] = useState()
+
+  // useEffect(() => {
+  //   function handleDataChange() {
+  //     setChartsData({
+  //       labels: chartBars.data.map((el) => el.task),
+  //       datasets: [
+  //         {
+  //           data: chartBars.data.map((el) => el.productivity),
+  //         },
+  //       ],
+  //     });
+  //   }
+
+  //   handleDataChange();
+  // }, [chartBars]);
+
+  const [chartsData, setChartsData] = useState<{
+    labels: string[];
+    datasets: Array<{
+      data: number[];
+    }>;
+  }>({
+    labels: [],
     datasets: [
       {
-        label: "Productivity in %",
-        data: chartBars.data.map((el) => el.productivity),
-        backgroundColor: "#3744BD",
+        data: [],
       },
     ],
-  };
+  });
 
-  return <Bar options={options} data={data} />;
+  useEffect(() => {
+    function handleDataChange() {
+      setChartsData({
+        labels: chartBars.data.map((el) => el.task),
+        datasets: [
+          {
+            data: chartBars.data.map((el) => el.productivity),
+          },
+        ],
+      });
+    }
+
+    handleDataChange();
+  }, [chartBars]);
+
+  // const data = {
+  //   labels,
+  //   datasets: [
+  //     {
+  //       label: "Productivity in %",
+  //       data: chartBars.data.map((el) => el.productivity),
+  //       backgroundColor: "#3744BD",
+  //     },
+  //   ],
+  // };
+
+  return <Bar options={options} data={chartsData} />;
 }

@@ -15,8 +15,6 @@ export const Navbar = () => {
       <nav className="navbar_icons_container">
         <ul> 
         <li><IoStatsChart className="icon" />Productivity</li>
-        {/* <li><IoPieChart className="icon" />Utilization</li> */}
-        {/* <IoCalendarNumber className="icon" /> */}
         <li><IoSettings className="icon" />Settings</li>
         </ul>
       </nav>
