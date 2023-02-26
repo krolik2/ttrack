@@ -8,6 +8,7 @@ export interface Data {
   task: string;
   productivity: number;
   weight: number;
+  color: string;
 }
 
 interface ChartBars {
@@ -25,9 +26,7 @@ export const chartBarsSlice = createSlice({
   initialState,
   reducers: {
     addBar: (state, { payload }) => {
-      if (!state.data.find((el) => el.task.includes(payload.task))) {
-        state.data.push(payload);
-      }
+      state.data.push(payload);
     },
     removeBar: (state, { payload }) => {
       state.data = state.data.filter((el) => el.task !== payload);
@@ -66,6 +65,12 @@ export const chartBarsSlice = createSlice({
       let editedBar = state.data.find((el) => el.task === payload.task);
       if (editedBar) {
         editedBar.weight = payload.weight;
+      }
+    },
+    getRandomColor: (state, { payload }) => {
+      let editedBar = state.data.find((el) => el.task === payload.task);
+      if (editedBar) {
+        editedBar.color = payload.color;
       }
     },
     clearData: (state) => {
@@ -125,6 +130,46 @@ export const getTotal = () => (dispatch: any, getState: any) => {
   dispatch(calculateTotal(total));
 };
 
+let colors = [
+  "#3744BD",
+  "#8709E0",
+  "#F7027D",
+  "#E03909",
+  "#FC980A",
+  "#24F26D",
+  "#26FCAE",
+  "#2EE6D6",
+  "#26D5FC",
+];
+
+const usedColors: string[] = [];
+
+export const randomColor = (task: string) => (dispatch: any, getState: any) => {
+  const currentState = getState().chartBars;
+  const taskToUpdate = currentState.data.find((el: any) => el.task === task);
+
+  function randomNoRepeats(array: string[]) {
+    return function () {
+      let remainingColors = array.filter(
+        (color) => !usedColors.includes(color)
+      );
+      if (remainingColors.length === 0) {
+        usedColors.length = 0;
+        remainingColors = array;
+      }
+      const index = Math.floor(Math.random() * remainingColors.length);
+      const item = remainingColors[index];
+      usedColors.push(item);
+      return item;
+    };
+  }
+
+  let chooser = randomNoRepeats(colors);
+
+  const result = { ...taskToUpdate, color: chooser() };
+  dispatch(getRandomColor(result));
+};
+
 export const {
   addBar,
   editBar,
@@ -133,6 +178,7 @@ export const {
   calculateTotal,
   removeBar,
   calculateWeight,
+  getRandomColor,
 } = chartBarsSlice.actions;
 export const selectChartBars = (state: RootState) => state.chartBars;
 export default chartBarsSlice.reducer;

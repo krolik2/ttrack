@@ -9,6 +9,7 @@ import {
   getTotal,
   getWeight,
   selectChartBars,
+  randomColor,
 } from "../features/chartBars/ChartBarsSlice";
 import { taskData } from "../data/data";
 import TaskList from "./TaskList";
@@ -28,7 +29,8 @@ export const Dashboard = () => {
     if (
       Number(state.time) > 0 &&
       Number(state.volumes) > 0 &&
-      state.task !== ""
+      state.task !== "" &&
+      !chartBars.data.find((el) => el.task.includes(state.task))
     ) {
       dispatch(
         addBar({
@@ -37,10 +39,12 @@ export const Dashboard = () => {
           task: state.task,
           productivity: 0,
           weight: 0,
+          color: null,
         })
       );
       dispatch(getProductivity(state.task));
       dispatch(getWeight(state.task));
+      dispatch(randomColor(state.task));
       dispatch(getTotal());
       setState({
         ...state,
