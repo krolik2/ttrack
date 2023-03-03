@@ -1,4 +1,5 @@
-import { IoStatsChart, IoSettings } from "react-icons/io5";
+import { IoStatsChart } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -14,8 +15,8 @@ export const Navbar = () => {
       <div className="navbar_icons_wrapper">
       <nav className="navbar_icons_container">
         <ul> 
-        <li><IoStatsChart className="icon" />Productivity</li>
-        <li><IoSettings className="icon" />Settings</li>
+        <Link to="/"><li><IoStatsChart className="icon" />Productivity</li></Link>
+        {/* <Link to="settings"><li><IoSettings className="icon" />Settings</li></Link> */}
         </ul>
       </nav>
       </div>
