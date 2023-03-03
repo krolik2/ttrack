@@ -74,54 +74,62 @@ export const Dashboard = () => {
     <div className="charts_container">
       <div className="controls_container">
         <h1 className="heading">Calculator</h1>
-        <form className="productivity_form" onSubmit={onSubmit}>
-          <select
-            className="select"
-            name="task"
-            id="task"
-            value={state.task}
-            onChange={handleChange}
-          >
-            <option defaultValue="" hidden>
-              Pick a task
-            </option>
-            {taskData.map((el) => (
-              <option key={el.name} value={el.name}>
-                {el.name}
-              </option>
-            ))}
-          </select>
-          <input
-            className="input"
-            placeholder="Time(H):"
-            name="time"
-            value={state.time}
-            onChange={handleChange}
-          />
-          <input
-            className="input"
-            placeholder="Volumes:"
-            name="volumes"
-            value={state.volumes}
-            onChange={handleChange}
-          />
-          <button className="button" type="submit">
-            <span className="button_wrapper">
-              <IoAddOutline className="icon" />
-              Add
-            </span>
-          </button>
-          <button className="button button_reset" onClick={() => handleClick()}>
-            <span className="button_wrapper">
-              <IoTrashOutline className="icon" />
-              Reset
-            </span>
-          </button>
-        </form>
+        <div className="productivity_container">
+          <form className="productivity_form" onSubmit={onSubmit}>
+            <div className="input-container">
+              <select
+                className="select"
+                name="task"
+                id="task"
+                value={state.task}
+                onChange={handleChange}
+              >
+                <option defaultValue="" hidden>
+                  Pick a task
+                </option>
+                {taskData.map((el) => (
+                  <option key={el.name} value={el.name}>
+                    {el.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                className="input"
+                placeholder="Time(H):"
+                name="time"
+                value={state.time}
+                onChange={handleChange}
+              />
+              <input
+                className="input"
+                placeholder="Volumes:"
+                name="volumes"
+                value={state.volumes}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="btn-container">
+              <button className="button btn-action" type="submit">
+                <span className="button_wrapper">
+                  <IoAddOutline className="icon" />
+                  Add
+                </span>
+              </button>
+              <button
+                className="button button_reset"
+                onClick={() => handleClick()}
+              >
+                <span className="button_wrapper">
+                  <IoTrashOutline className="icon" />
+                  Reset
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div className="even_more_crap">
+      <div className="content_container">
         <div className="charts_left">
-          <div className="productivity"></div>
           <h2 className="sub_title">Total productivity: {chartBars.total}%</h2>
           <div className="charts_wrapper">
             <BarChart />

@@ -55,10 +55,11 @@ const Modal = ({
             <IoAddOutline className="icon close" onClick={toggleModal} />
           </div>
         </div>
-        <div className="modal-sub_header">{state.task}</div>
+        <div className="modal-sub_header sub_title">{state.task}</div>
         <form className="modal-editable" onSubmit={handleSubmit}>
+          <div className="modal-data-container">
           <div className="modal-data">
-            Volumes:
+            <label className="label" htmlFor="volumes">Volumes:</label>
             <input
               className="input modal-input"
               id="volumes"
@@ -68,7 +69,7 @@ const Modal = ({
             />
           </div>
           <div className="modal-data">
-            Time:
+            <label className="label" htmlFor="time">Time:</label>
             <input
               className="input modal-input"
               id="time"
@@ -76,6 +77,7 @@ const Modal = ({
               value={state.time}
               onChange={handleChange}
             />
+          </div>
           </div>
           <div className="modal-btns">
             <button
@@ -85,7 +87,7 @@ const Modal = ({
             >
               cancel
             </button>
-            <button className="button" type="submit">
+            <button className="button btn-action" type="submit">
               save
             </button>
           </div>

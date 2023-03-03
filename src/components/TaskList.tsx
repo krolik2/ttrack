@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { IoCloseOutline } from "react-icons/io5";
 import {
   selectChartBars,
   removeBar,
@@ -48,7 +47,11 @@ const TaskList = () => {
       <div className="task_list">
         {chartBars.data.length ? (
           chartBars.data.map((el) => (
-            <div className="task_item" key={el.task}>
+            <div
+              className="task_item"
+              style={{ borderColor: `${el.color}` }}
+              key={el.task}
+            >
               <div className="task_text" onClick={() => editData(el)}>
                 <div className="task_item_title">{el.task}</div>
                 <div className="task_item_time">{`Time: ${el.time} h`}</div>
@@ -56,19 +59,20 @@ const TaskList = () => {
               </div>
               <div className="btn-container">
                 <button
-                  className="action-btn"
+                  className="close-container"
                   onClick={() => handleDelete(el.task)}
                 >
-                  <IoCloseOutline className="icon" />
+                  <div className="leftright"></div>
+                  <div className="rightleft"></div>
                 </button>
               </div>
             </div>
           ))
         ) : (
           <div className="message">
-            <h2 className="sub_title">
+            <h3 className="sub_title smaller">
               There are currently no tasks on your list... add something :)
-            </h2>
+            </h3>
           </div>
         )}
       </div>

@@ -38,35 +38,21 @@ export const options = {
 
 export function BarChart() {
   const chartBars = useSelector(selectChartBars);
-  // const labels = chartBars.data.map((el) => el.task);
-
-  // const [chartsData, setChartsData] = useState()
-
-  // useEffect(() => {
-  //   function handleDataChange() {
-  //     setChartsData({
-  //       labels: chartBars.data.map((el) => el.task),
-  //       datasets: [
-  //         {
-  //           data: chartBars.data.map((el) => el.productivity),
-  //         },
-  //       ],
-  //     });
-  //   }
-
-  //   handleDataChange();
-  // }, [chartBars]);
 
   const [chartsData, setChartsData] = useState<{
     labels: string[];
     datasets: Array<{
       data: number[];
+      backgroundColor: string[];
+      hoverBackgroundColor: string[]
     }>;
   }>({
     labels: [],
     datasets: [
       {
         data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: []
       },
     ],
   });
@@ -78,6 +64,8 @@ export function BarChart() {
         datasets: [
           {
             data: chartBars.data.map((el) => el.productivity),
+            backgroundColor: chartBars.data.map((el) => el.color),
+            hoverBackgroundColor: chartBars.data.map((el) => el.color)
           },
         ],
       });
@@ -86,16 +74,6 @@ export function BarChart() {
     handleDataChange();
   }, [chartBars]);
 
-  // const data = {
-  //   labels,
-  //   datasets: [
-  //     {
-  //       label: "Productivity in %",
-  //       data: chartBars.data.map((el) => el.productivity),
-  //       backgroundColor: "#3744BD",
-  //     },
-  //   ],
-  // };
 
-  return <Bar options={options} data={chartsData} />;
+  return <Bar options={options} data={chartsData} redraw={true}/>;
 }
