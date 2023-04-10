@@ -3,6 +3,7 @@
 
 .container {
   min-height: 100vh;
+  min-height: 100svh;
   display: grid;
   place-content: center;
   background-color: $background;
@@ -11,6 +12,7 @@
 .dashboard {
   min-width: 95vw;
   min-height: 90vh;
+  max-height: 90vh;
   margin: 2.5vh 0;
   background-color: $primary;
   border-radius: 20px;
@@ -21,13 +23,33 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-  font-size: clamp(1.7rem, 2vw, 2.5rem);
+  font-size: clamp(1.6rem, 2vw, 2.5rem);
   width: 48%;
+}
+
+.sub_title_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 2rem;
+
+}
+
+.sub_title_left {
+  display: flex;
+  justify-content: center;
+  width: 48%;
+}
+
+.sub_title_right {
+  display: flex;
+  justify-content: center;
+  width: 52%;
 }
 
 .sub_title {
   font-weight: 200;
-  font-size: clamp(1.3rem, 1.5vw, 1.8rem);
+  font-size: clamp(1.2rem, 1.5vw, 1.8rem);
   margin-bottom: 0.5rem;
   margin: 10px auto;
 }
@@ -63,7 +85,7 @@
 }
 
 .input {
-  width: 8vw;
+  width: clamp(5rem, 6vw, 8vw);
   border-radius: 10px;
   border: 1px solid $inactive;
   font-size: $base-font-size;
@@ -77,8 +99,12 @@ input:focus {
   border: 1px solid $secondary;
 }
 
+.input_big {
+  width: 16vw;
+}
+
 .select {
-  width: 8vw;
+  width: clamp(7rem, 8vw, 10vw);
   border-radius: 10px;
   font-size: $base-font-size;
   border: 1px solid $inactive;
@@ -130,7 +156,6 @@ input:focus {
   display: flex;
   flex-direction: column;
   background-color: $primary;
-  height: 80%;
 }
 
 .charts_left {
@@ -144,20 +169,20 @@ input:focus {
   justify-content: flex-start;
   align-items: center;
   width: 52%;
+  overflow-y: scroll;
 }
 
 .content_container {
   display: flex;
-  height: 100%;
   flex-direction: row;
   padding: 2rem;
+  max-height: 50vmin;
 }
 
 .charts_wrapper {
   display: flex;
-  height: 100%;
-  width: 100%;
   margin-right: 1rem;
+  min-height: 45vmin;
 }
 
 .task_list {
@@ -313,14 +338,14 @@ input:focus {
     align-items: center;
 
     ul,
-    li {
+    li,
+    a {
       display: flex;
       align-items: center;
-      margin-right: 30px;
+      margin-right: 20px;
       font-family: "Lato", sans-serif;
       font-weight: 700;
       font-size: 1.2rem;
-      color: $secondary;
       cursor: pointer;
     }
 
@@ -330,6 +355,24 @@ input:focus {
       margin-right: 3px;
     }
   }
+}
+
+.nav-item {
+  color: $inactive;
+}
+
+.active {
+  color: $secondary;
+}
+
+.active-link {
+  background-color: $secondary;
+  height: 3px;
+  border-radius: 1rem;
+  position: absolute;
+  left: 0;
+  bottom: -11px;
+  width: 100%;
 }
 
 .modal-bg {
@@ -346,8 +389,8 @@ input:focus {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 28vw;
-  height: 38vh;
+  width: min(30rem, 44vw);
+  height: auto;
   border-radius: 10px;
   background-color: #fff;
   display: flex;
@@ -372,7 +415,7 @@ input:focus {
 
 .modal-sub_header {
   font-weight: 500;
-  margin: 0 20%;
+  margin: 5% 0;
 }
 
 .modal-editable {
