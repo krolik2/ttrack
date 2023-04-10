@@ -128,9 +128,16 @@ export const Dashboard = () => {
           </form>
         </div>
       </div>
+      <div className="sub_title_container">
+        <div className="sub_title_left">
+          <h2 className="sub_title">Total productivity: {chartBars.total}%</h2>
+        </div>
+        <div className="sub_title_right">
+          <h2 className="sub_title">Task list:</h2>
+        </div>
+      </div>
       <div className="content_container">
         <div className="charts_left">
-          <h2 className="sub_title">Total productivity: {chartBars.total}%</h2>
           <div className="charts_wrapper">
             <BarChart />
           </div>

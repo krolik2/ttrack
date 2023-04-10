@@ -43,7 +43,6 @@ const TaskList = () => {
   return (
     <>
       <div className="productivity"></div>
-      <h2 className="sub_title">Task list:</h2>
       <div className="task_list">
         {chartBars.data.length ? (
           chartBars.data.map((el) => (
