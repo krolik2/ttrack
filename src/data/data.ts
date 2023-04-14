@@ -6,7 +6,7 @@ export const taskData = [
   { name: "task5", id: 5, targetPerHour: 30 },
   { name: "task6", id: 6, targetPerHour: 20 },
   { name: "task7", id: 7, targetPerHour: 78.45 },
-  { name: "task8", id: 8, targetPerHour: 45.77 },
+  { name: "task8", id: 8, targetPerHour: 500 },
   { name: "task9", id: 9, targetPerHour: 35.21 },
   { name: "task10", id: 10, targetPerHour: 35.92 },
   { name: "task11", id: 11, targetPerHour: 21.97 },
