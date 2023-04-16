@@ -10,10 +10,9 @@
 }
 
 .dashboard {
-  min-width: 95vw;
+  width: 95vw;
   min-height: 90vh;
-  max-height: 90vh;
-  margin: 2.5vh 0;
+  max-height: 95vh;
   background-color: $primary;
   border-radius: 20px;
   box-shadow: 0px 0px 19px -12px rgba(66, 68, 90, 1);
@@ -24,32 +23,21 @@
   align-items: center;
   font-weight: 600;
   font-size: clamp(1.6rem, 2vw, 2.5rem);
-  width: 48%;
-}
-
-.sub_title_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0 2rem;
 }
 
 .sub_title_left {
   display: flex;
   justify-content: center;
-  width: 48%;
 }
 
 .sub_title_right {
   display: flex;
   justify-content: center;
-  width: 52%;
 }
 
 .sub_title {
   font-weight: 200;
   font-size: clamp(1.2rem, 1.5vw, 1.8rem);
-  margin-bottom: 0.5rem;
   margin: 10px auto;
 }
 
@@ -57,30 +45,15 @@
   font-size: $base-font-size;
 }
 
-.productivity_container {
-  display: flex;
-  justify-content: center;
-  width: 52%;
-}
-
 .productivity_form {
   display: flex;
+  gap: 0.6rem;
   justify-content: space-between;
-  align-items: center;
-  width: 90%;
 }
 
 .input-container {
   display: flex;
-  justify-content: center;
-}
-
-.counter_form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  column-gap: 2rem;
-  row-gap: 1rem;
+  gap: 0.3rem;
 }
 
 .input {
@@ -91,15 +64,6 @@
   outline: none;
   background-color: #fff;
   padding: 8px;
-  margin-right: 10px;
-}
-
-input:focus {
-  border: 1px solid $secondary;
-}
-
-.input_big {
-  width: 16vw;
 }
 
 .select {
@@ -110,14 +74,12 @@ input:focus {
   outline: none;
   background-color: #fff;
   padding: 8px;
-  margin-right: 10px;
   cursor: pointer;
 }
 
 .button {
-  display: inline-block;
   font-size: $base-font-size;
-  width: 6rem;
+  width: clamp(4rem, 5vw, 7vw);
   padding: 8px;
   background-color: $secondary;
   border: 1px solid transparent;
@@ -127,8 +89,7 @@ input:focus {
 
   .icon {
     color: $primary;
-    height: 1rem;
-    width: 1rem;
+    height: $base-font-size;
     margin-right: 3px;
   }
 }
@@ -137,8 +98,6 @@ input:focus {
   background-color: $primary;
   color: $secondary;
   border: 1px solid $secondary;
-  margin-right: 0;
-  margin-left: 1rem;
 
   .icon {
     color: $secondary;
@@ -151,52 +110,20 @@ input:focus {
   justify-content: center;
 }
 
-.charts_container {
-  display: flex;
-  flex-direction: column;
-  background-color: $primary;
-}
-
 .charts_left {
-  display: flex;
-  width: 48%;
-  flex-direction: column;
-}
-.charts_right {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 52%;
-  overflow-y: scroll;
-}
-
-.content_container {
-  display: flex;
-  flex-direction: row;
-  padding: 2rem;
-  max-height: 50vmin;
-}
-
-.charts_wrapper {
-  display: flex;
-  margin-right: 1rem;
+  position: relative;
   min-height: 45vmin;
 }
-
-.task_list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px 0;
-  width: 100%;
+.charts_right {
+  overflow-y: scroll;
+  max-height: 45vmin;
 }
 
 .task_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   height: 3rem;
   border: 1px solid;
   border-radius: 10px;
@@ -237,12 +164,9 @@ input:focus {
 
 .btn-container {
   display: flex;
+  gap: 0.3rem;
   justify-content: flex-end;
   align-items: center;
-}
-
-.btn-action {
-  margin-left: 1rem;
 }
 
 .close-container {
@@ -294,16 +218,19 @@ input:focus {
   background-color: red;
 }
 
-.controls_container {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 2rem;
+.content {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  padding: 0 2rem;
+  column-gap: 3.5rem;
+  row-gap: 2.5rem;
 }
 
 .navbar {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: $primary;
+  margin-bottom: 3rem;
 
   .navbar_wrapper {
     display: flex;
@@ -331,21 +258,16 @@ input:focus {
   padding: 0.7rem 2rem;
 
   .navbar_icons_container {
-    width: 90%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 1.5rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
 
-    ul,
-    li,
     a {
       display: flex;
       align-items: center;
-      margin-right: 20px;
-      font-family: "Lato", sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      cursor: pointer;
     }
 
     .icon {
@@ -442,6 +364,7 @@ input:focus {
 .modal-btns {
   display: flex;
   justify-content: flex-end;
+  gap: 0.3rem;
   border-top: 1px solid $inactive;
   padding: 10px;
 }
@@ -470,17 +393,13 @@ input:focus {
 }
 
 @media only screen and (max-width: 1280px) {
-  .dashboard {
-    min-height: 95vh;
-    max-height: 95vh;
+  .navbar {
+    margin-bottom: 2.5rem;
   }
 
-  .content_container {
-    max-height: 48vmin;
-  }
-  
-  .charts_wrapper {
-    min-height: 40vmin;
+  .content {
+    column-gap: 1.75rem;
+    row-gap: 1.5rem;
   }
 
   .task_item {
@@ -494,7 +413,7 @@ input:focus {
   .rightleft {
     width: 10px;
   }
-  
+
   .leftright {
     width: 10px;
   }

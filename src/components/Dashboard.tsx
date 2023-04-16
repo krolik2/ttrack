@@ -1,5 +1,5 @@
 import { useState, useCallback, ChangeEvent } from "react";
-import { IoAddOutline, IoTrashOutline } from "react-icons/io5";
+import { IoAddOutline, IoReloadSharp } from "react-icons/io5";
 import { BarChart } from "./BarChart";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
@@ -71,81 +71,71 @@ export const Dashboard = () => {
   );
 
   return (
-    <div className="charts_container">
-      <div className="controls_container">
+    <div className="content">
         <h1 className="heading">Calculator</h1>
-        <div className="productivity_container">
-          <form className="productivity_form" onSubmit={onSubmit}>
-            <div className="input-container">
-              <select
-                className="select"
-                name="task"
-                id="task"
-                value={state.task}
-                onChange={handleChange}
-              >
-                <option defaultValue="" hidden>
-                  Pick a task
+        <form className="productivity_form" onSubmit={onSubmit}>
+          <div className="input-container">
+            <select
+              className="select"
+              name="task"
+              id="task"
+              value={state.task}
+              onChange={handleChange}
+            >
+              <option defaultValue="" hidden>
+                Pick a task
+              </option>
+              {taskData.map((el) => (
+                <option key={el.name} value={el.name}>
+                  {el.name}
                 </option>
-                {taskData.map((el) => (
-                  <option key={el.name} value={el.name}>
-                    {el.name}
-                  </option>
-                ))}
-              </select>
-              <input
-                className="input"
-                placeholder="Time(H):"
-                name="time"
-                value={state.time}
-                onChange={handleChange}
-              />
-              <input
-                className="input"
-                placeholder="Volumes:"
-                name="volumes"
-                value={state.volumes}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="btn-container">
-              <button className="button btn-action" type="submit">
-                <span className="button_wrapper">
-                  <IoAddOutline className="icon" />
-                  Add
-                </span>
-              </button>
-              <button
-                className="button button_reset"
-                onClick={() => handleClick()}
-              >
-                <span className="button_wrapper">
-                  <IoTrashOutline className="icon" />
-                  Reset
-                </span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className="sub_title_container">
+              ))}
+            </select>
+            <input
+              className="input"
+              placeholder="Time(H):"
+              name="time"
+              value={state.time}
+              onChange={handleChange}
+            />
+            <input
+              className="input"
+              placeholder="Volumes:"
+              name="volumes"
+              value={state.volumes}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="btn-container">
+            <button className="button btn-action" type="submit">
+              <span className="button_wrapper">
+                <IoAddOutline className="icon" />
+                Add
+              </span>
+            </button>
+            <button
+              className="button button_reset"
+              onClick={() => handleClick()}
+            >
+              <span className="button_wrapper">
+                <IoReloadSharp className="icon" />
+                Reset
+              </span>
+            </button>
+          </div>
+        </form>
         <div className="sub_title_left">
           <h2 className="sub_title">Total productivity: {chartBars.total}%</h2>
         </div>
         <div className="sub_title_right">
           <h2 className="sub_title">Task list:</h2>
         </div>
-      </div>
-      <div className="content_container">
         <div className="charts_left">
-          <div className="charts_wrapper">
             <BarChart />
-          </div>
         </div>
         <div className="charts_right">
           <TaskList />
         </div>
-      </div>
     </div>
   );
 };

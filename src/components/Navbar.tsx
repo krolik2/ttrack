@@ -1,5 +1,5 @@
-import { IoStatsChart } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { IoStatsChart, IoSettings, IoListSharp } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -11,14 +11,27 @@ export const Navbar = () => {
             <span className="navbar_logo_details">Track</span>
           </h2>
         </div>
-      </div>
-      <div className="navbar_icons_wrapper">
-      <nav className="navbar_icons_container">
-        <ul> 
-        <Link to="/"><li><IoStatsChart className="icon" />Productivity</li></Link>
-        {/* <Link to="settings"><li><IoSettings className="icon" />Settings</li></Link> */}
-        </ul>
-      </nav>
+        <nav className="navbar_icons_wrapper">
+          <ul className="navbar_icons_container">
+            <li className="nav-item">
+              <NavLink to="/">
+                <IoStatsChart className="icon"></IoStatsChart>Productivity
+              </NavLink>
+            </li>
+            {/* <li className="nav-item">
+              <NavLink to="manage-tasks">
+                <IoListSharp className="icon" />
+                Manage Tasks
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="settings">
+                <IoSettings className="icon" />
+                Settings
+              </NavLink>
+            </li> */}
+          </ul>
+        </nav>
       </div>
     </>
   );

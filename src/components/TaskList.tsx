@@ -42,8 +42,6 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="productivity"></div>
-      <div className="task_list">
         {chartBars.data.length ? (
           chartBars.data.map((el) => (
             <div
@@ -74,7 +72,6 @@ const TaskList = () => {
             </h3>
           </div>
         )}
-      </div>
       {showModal && (
         <Modal toggleModal={toggleModal} state={state} setState={setState} />
       )}
