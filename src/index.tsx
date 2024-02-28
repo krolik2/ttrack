@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import "./index.css";
 import App from "./App";
 import { store } from "./app/store";
@@ -7,7 +7,10 @@ import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!)
+
+root.render(
   <React.StrictMode>
     <HashRouter>
       <Provider store={store}>
@@ -16,7 +19,7 @@ ReactDOM.render(
     </HashRouter>
   </React.StrictMode>,
 
-  document.getElementById("root")
+  // document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
